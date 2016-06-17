@@ -1,0 +1,11 @@
+
+/*General css rules for wisumUtleie.
+   Created 17-06-16 by Jonas J. Solsvik*/
+
+
+html, body {height: 100%; text-align:center; font-size: 30px;}
+
+#frontimage  {  height: 50%; background-color: #90C3D4; }
+#titlebar    {  height: 10%; background-color: #A1D490; }
+#statusbar   {  height: 10%; background-color: #90C3D4; }
+#verboseinfo {  height: 30%; background-color: #A1D490; }

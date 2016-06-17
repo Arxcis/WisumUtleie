@@ -1,15 +1,19 @@
+"""
+	Views.py file contains methods about what should be returned to the viewport.
+"""
+
 from django.shortcuts import render
 from django.http import HttpResponse
 
 
 def hey(request):
-	return HttpResponse("<h1>HALLAO!</h1>")
-
+	return render(request, 'wisumUtleie/scannernew.html')
+	#return HttpResponse("<h1>HALLAO!</h1>")
 
 
 def scanner(request):
-	"""
-		Her brukes request-objektet flittig.
+
+	""" Her brukes request-objektet flittigself.
 		
 		request.method, returnerer hvilken metode som er brukt 
 		  for å sende data via Http-protokollen, GET eller POST.
@@ -24,11 +28,9 @@ def scanner(request):
 			- =  - skilletegn mellom variabel-navn og variabel-verdi.
 	  	"""
 
-	if request.method == 'GET':
-		varenummer = request.GET
+	#if request.GET:
+	#	varenummer = request.GET
+	#	print('\nDette er printet i consollen: ', varenummer['d'], '\n')
+	#	return HttpResponse("<h1>" + varenummer['d'] + "</h1>")
 
-		print('\nDette er printet i consollen: ', varenummer['d'], '\n')
-
-		return HttpResponse("<h1>" + varenummer['d'] + "</h1>")
-
-	return HttpResponse("<h1>Varenummer 1</h1>")
+	return render(request, 'wisumUtleie/scannernew.html')

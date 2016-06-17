@@ -9,7 +9,7 @@ from django.db import models
 		models.EmailField() - A CharField that checks that the value is a valid email address. 
 		models.IntegerField() - 32bit integer
 
-		models.FielField() - A file-upload field
+		models.FileField() - A file-upload field
 		models.ImageField() - Inherits all attributes and methods from FileField, but also validates that the uploaded object is a valid image
 """
 
@@ -21,13 +21,23 @@ class GenericItem(models.Model):
 	holder = models.CharField(max_length = 50)
 
 	status = models.CharField(max_length = 20)
-	status_int = models.IntegerField()
-
-	image1 = models.ImageField()
-	image2 = models.ImageField()
-	image3 = models.ImageField()
+	status_int = models.PositiveIntegerField()
+	profile_picture = models.ImageField()
 
 
+	def __str__(self):
+		return self.title
+
+
+
+class Customer(models.Model):
+
+	name = models.CharField(max_length = 50)
+	phone = models.PositiveIntegerField()
+	email = models.EmailField()
+
+	def __str__(self):
+		return self.title
 
 
 
