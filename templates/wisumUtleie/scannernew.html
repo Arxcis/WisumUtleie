@@ -3,15 +3,84 @@
 <html lang="en">
 
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 	<link rel="stylesheet" href="static/wisumUtleie/general.css" type = "text/css"/>
+
+	<!--jQuery library-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src="static/general.js" type="text/javascript"></script>
+
 </head>
 
 <body>	
-	<div id="frontimage">Img goes here</div>
-	<div id="titlebar">Titlebar</div>
-	<div id="statusbar">Statusbar</div>
-	<div id="verboseinfo">Verboseinfo</div>
+	<div id="frontimage">
+	    <video autoplay></video>
+	</div>
+	<div id="titlebar"><input/></div>
+	<div id="statusbar">Statusbar<input/></div>
+	<div id="verboseinfo">Verboseinfo<input/></div>
 </body>
 
 </html>
+
+<script type="text/javascript">
+
+	/* Override navigator.getUserMedia, so it can work in all browsers.*/
+	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+$(document).ready(function(){
+
+	/*Initialize switches*/
+	var colorSwitch = new Switchbox(['red','yellow','green'])
+	var cameraSwitch = new Switchbox([false, true]);
+
+
+	$(document).on('click', '#statusbar', function(){
+
+		$bar = $('#statusbar');
+		colorSwitch.forward();
+		$bar.css( 'background-color', colorSwitch.stateValue);
+
+	});
+
+
+	var video = document.querySelector('video');   /* Select the video element */ 
+	var constraints = {
+    	audio: false,
+    	video: { 
+ 			mandatory: {
+  				maxWidth: 1920,
+  	    		maxHeight: 1080
+  			}
+  		}
+	}; 
+
+	function successCallback(stream) {
+	    window.stream = stream; // stream available to console
+
+	    if (window.URL) {
+	        video.src = window.URL.createObjectURL(stream);
+	    } else {
+	        video.src = stream;
+	    }
+	};
+
+	function errorCallback(error) {
+	    console.log('navigator.getUserMedia error: ', error);
+	};
+
+	$(document).on('click', '#frontimage', function(){
+
+		cameraSwitch.forward();
+
+		if (cameraSwitch.stateValue) {
+			navigator.getUserMedia(constraints, successCallback, errorCallback);
+		} else {
+			video.pause();
+			video.src = "";
+
+		};
+	});
+});
+
+</script>

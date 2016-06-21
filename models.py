@@ -13,21 +13,20 @@ from django.db import models
 		models.ImageField() - Inherits all attributes and methods from FileField, but also validates that the uploaded object is a valid image
 """
 
+class Item(models.Model):
 
-class GenericItem(models.Model):
+	title = models.CharField(max_length=100)
+	location = models.CharField(max_length=100)
+	holder = models.CharField(max_length=50)
 
-	title = models.CharField(max_length = 100)
-	location = models.CharField(max_length = 100)
-	holder = models.CharField(max_length = 50)
-
-	status = models.CharField(max_length = 20)
+	status = models.CharField(max_length=20)
 	status_int = models.PositiveIntegerField()
 	profile_picture = models.ImageField()
 
+	info = models.TextField()
 
 	def __str__(self):
 		return self.title
-
 
 
 class Customer(models.Model):

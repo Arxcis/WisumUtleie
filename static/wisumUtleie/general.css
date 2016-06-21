@@ -5,7 +5,9 @@
 
 html, body {height: 100%; text-align:center; font-size: 30px;}
 
+video {background-color: #ff8080; height: 95%;}
+
 #frontimage  {  height: 50%; background-color: #90C3D4; }
 #titlebar    {  height: 10%; background-color: #A1D490; }
-#statusbar   {  height: 10%; background-color: #90C3D4; }
+#statusbar   {  height: 10%; background-color: red; }
 #verboseinfo {  height: 30%; background-color: #A1D490; }
